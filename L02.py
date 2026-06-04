@@ -1004,11 +1004,10 @@ train_losses, val_losses, token_seen = train_model_simple(
 #6.2训练集和测试集的损失可视化
 import matplotlib.pyplot as plt
 from matplotlib.ticker import MAxNLocator
-def plot_losses(epoches_seen , tokens_seen, train_losses, val_losses)
+def plot_losses(epochs_seen , tokens_seen, train_losses, val_losses):
     fig, ax1 = plt.subplots(figsize = (5,3))
-    ax1.plot(epoches_seen, train_losses, label = "Training loss")
-    ax1.plot(
-        epochs_seen, val_losses, linestyle= "-.", label = "Validation loss"
+    ax1.plot(epochs_seen, train_losses, label = "Training loss")
+    ax1.plot(epochs_seen, val_losses, linestyle= "-.", label = "Validation loss"
     )
     ax1.set_xlabel("Epochs")
     ax1.set_ylabel("Loss")
