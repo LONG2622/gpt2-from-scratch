@@ -1,4 +1,6 @@
 #在无标签数据上进行预训练
+import os
+os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 from ch03 import GPTModel, generate_text_simple
 from ch03 import *
 from ch02 import *
@@ -358,7 +360,6 @@ def generate(model, idx, max_new_tokens, context_size,
             break
         idx = torch.cat((idx, idx_next), dim=1)
     return idx
-
 #测试
 torch.manual_seed(123)
 token_ids = generate(
@@ -382,7 +383,7 @@ torch.save({
 "model_and_optimizer.pth"
 )
 #加载训练权重
-import urllib.request
+"""import urllib.request
 url = (
     "https://raw.githubusercontent.com/rasbt/"
     "LLMs-from-scratch/main/ch05"
@@ -391,6 +392,7 @@ url = (
 filename= url.split('/')[-1]
 urllib.request.urlretrieve(url, filename)
 #下载7个相关文件
+
 from gpt_download import download_and_load_gpt2
 settings , params = download_and_load_gpt2(
     model_size = "124M", models_dir = "gpt2"
@@ -410,10 +412,11 @@ model_config = {
     "gpt2-large  (774M)":{"emb_dim":1280, "n_layers":36, "n_heads":20},
     "gpt2-xl  (1558M)":{"emb_dim":1600, "n_layers":48, "n_heads":25},
 }
-model_name = "gpt2-small (124M)"
-NEW_CONFIG = GPT_CONFIG_124M.copy()
-NEW_CONFIG.update(model_config[model_name])
 
+NEW_CONFIG = GPT_CONFIG_124M.copy()
+model_name = "124M"  
+model_config = {"124M": {"emb_dim": 768, "n_layers": 12, "n_heads": 12}}
+NEW_CONFIG.update(model_config[model_name])
 gpt = GPTModel(NEW_CONFIG)
 gpt.eval()
 #将tensorflow转为pytorch
@@ -487,6 +490,7 @@ def load_weights_into_gpt(gpt,params):
 
 load_weights_into_gpt(gpt, params)
 gpt.to(device)
+
 #测试
 torch.manual_seed(123)
 token_ids = generate(
@@ -498,3 +502,4 @@ token_ids = generate(
     temperature= 1.5
     )
 print(token_ids_to_text(token_ids, tokenizer))
+"""

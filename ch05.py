@@ -1,12 +1,14 @@
 #开始微调6.3
 #指令微调和分类微调
 #准备数据集：下载和解压
+import os
+os.environ["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION"] = "python"
+os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 import urllib.request
 import zipfile
 import os
 import pandas as pd
 from pathlib import Path
-import tokenizer
 url = "https://archive.ics.uci.edu/static/public/228/sms+spam+collection.zip"
 zip_path = "sms_spam_collection.zip"
 extracted_path = "sms_spam_collection"
@@ -92,8 +94,8 @@ class SpamDataset(Dataset):
                 for encoded_text in self.encoded_texts
             ]
         self.encoded_texts= [
-            self.encoded_text + [pad_token_id] * 
-            (self.max_length - len(self.encoded_text))
+            encoded_text + [pad_token_id] * 
+            (self.max_length - len(encoded_text))
             for encoded_text in self.encoded_texts
         ]
     def __getitem__(self, index):
@@ -167,24 +169,22 @@ BASE_CONFIG = {
     "drop_rate":0.0,
     "qkv_bias":True
 }
-
 model_configs = {
-    "gpt2-small  (124M)":{"emb_dim":768, "n_layers":12, "n_heads":12},
-    "gpt2-medium (355M)":{"emb_dim":1024, "n_layers":24, "n_heads":16},
-    "gpt2-large  (774M)":{"emb_dim":1280, "n_layers":36, "n_heads":20},
-    "gpt2-xl  (1558M)":{"emb_dim":1600, "n_layers":48, "n_heads":25},
+    "gpt2-small (124M)": {"emb_dim": 768, "n_layers": 12, "n_heads": 12},
+    "gpt2-medium (355M)": {"emb_dim": 1024, "n_layers": 24, "n_heads": 16},
+    "gpt2-large (774M)": {"emb_dim": 1280, "n_layers": 36, "n_heads": 20},
+    "gpt2-xl (1558M)": {"emb_dim": 1600, "n_layers": 48, "n_heads": 25},
 }
 BASE_CONFIG.update(model_configs[CHOOSE_MODEL])
 #加载预训练的GPT模型
 from gpt_download import download_and_load_gpt2
-from ch04 import GPTModel, load_weights_into_gpt
+from ch04 import GPTModel
 
 model_size = CHOOSE_MODEL.split(" ")[-1].lstrip("(").rstrip(")")
 settings, params = download_and_load_gpt2(
     model_size = model_size, models_dir= "gpt2"
 )
 model = GPTModel(BASE_CONFIG)
-load_weights_into_gpt(model, params)
 model.eval()
 
 from ch04 import text_to_token_ids, token_ids_to_text
@@ -364,7 +364,8 @@ train_classifier_simple(
     eval_iter = 5
 )
 end_time = time.time()
-execution_time_minutes = (end_time - start_time) /60
+execution_time_minutes = (end_time - start_time) /60.
+"""
 #可视化
 import matplotlib.pyplot as plt
 def plot_values(
@@ -429,3 +430,26 @@ print(classify_review(
 torch.save(model.state_dict(),"review_classifier.pth")
 model_state_dict = torch.load("review_classifier.pth", map_location=device)
 model.load_state_dict(model_state_dict)
+"""
+# 可视化
+import matplotlib.pyplot as plt
+def plot_values(epochs_seen, examples_seen, train_values, val_values, label="loss"):
+    fig, ax1 = plt.subplots(figsize=(5, 3))
+
+    # 画损失曲线
+    ax1.plot(epochs_seen, train_values, label=f"Training {label}")
+    ax1.plot(epochs_seen, val_values, linestyle="-.", label=f"Validation {label}")
+    ax1.set_xlabel("Epochs")
+    ax1.set_ylabel(label.capitalize())
+    ax1.legend()
+
+    # 第二条 x 轴
+    ax2 = ax1.twiny()
+    ax2.set_xlabel("Examples seen")
+
+    fig.tight_layout()
+    plt.show()
+# 画图
+if len(train_losses) > 0 and len(val_losses) > 0:
+    epochs_tensor = torch.linspace(0, num_epochs, len(train_losses))
+    plot_values(epochs_tensor, None, train_losses, val_losses)

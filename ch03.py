@@ -1,6 +1,8 @@
 #implementing a GPTmodel from scratch to  generate text 
 #训练模型进行文本生成5.31
 #分词器
+import os
+os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 import torch 
 import torch.nn as nn
 import tiktoken
