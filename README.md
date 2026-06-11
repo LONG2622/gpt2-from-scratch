@@ -1,7 +1,7 @@
 从零构建大语言模型（GPT-2）完整复现项目
 基于 PyTorch 从零手写实现 GPT-2 完整架构
 参考《从零构建大语言模型》官方源码，纯手工复现 Transformer、因果自注意力、预训练过程、文本生成、下游分类微调，不直接调用现成大模型库，深入理解 LLM 底层核心原理。
-✅ 纯手写实现 &nbsp;|&nbsp; ✅ 完整训练流程 &nbsp;|&nbsp; ✅ 文本生成 &nbsp;|&nbsp; ✅ 下游任务微调
+ 纯手写实现 &nbsp;|&nbsp;  完整训练流程 &nbsp;|&nbsp;  文本生成 &nbsp;|&nbsp;  下游任务微调
 ---
 📌 项目简介
 本项目完整复现小型 GPT-2 架构，从数据预处理、Tokenizer 编码、词嵌入、位置编码、多头自注意力、Transformer Block 堆叠，到模型预训练、Loss 收敛、Top-K / Temperature 采样文本生成、短信分类微调，全程从零实现。
