@@ -237,8 +237,8 @@ lora_dropout = 0.0     # Dropout率
 
 ## 📮 联系方式
 
-- 项目链接: [https://github.com/your-username/build-a-LLM-from-scratch](https://github.com/your-username/build-a-LLM-from-scratch)
-- 问题反馈: [Issues](https://github.com/your-username/build-a-LLM-from-scratch/issues)
+- 项目链接: [https://github.com/LONG2622/build-a-LLM-from-scratch](https://github.com/LONG2622/build-a-LLM-from-scratch)
+- 问题反馈: [Issues](https://github.com/LONG2622/build-a-LLM-from-scratch/issues)
 
 ---
 
