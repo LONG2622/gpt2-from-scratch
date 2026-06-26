@@ -309,7 +309,6 @@ with torch.no_grad():
 
 #在有监督数据的基础上微调
 #先微调处理垃圾消息分类
-from ch02 import *
 def evaluate_model(model ,train_loader , val_loader, device, eval_iter):
     model.eval()
     with torch.no_grad():

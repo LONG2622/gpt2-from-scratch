@@ -132,12 +132,10 @@ class LoRAMultiHeadAttention(nn.Module):
         # 原始 Q/K/V 投影
         keys = self.W_key(x)
         queries = self.W_query(x)
-        values = self.W_value(x)
-        
-        # 添加 LoRA 增量（只在训练时）
-        if self.training:
-            queries += self.lora_query(x)
-            values += self.lora_value(x)
+        values = self.W_value(x)        
+        # 添加 LoRA 增量（始终应用）
+        queries += self.lora_query(x)
+        values += self.lora_value(x)
         
         # 重塑为多头格式
         keys = keys.view(b, num_tokens, self.num_heads, self.head_dim).transpose(1, 2)

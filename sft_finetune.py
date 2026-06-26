@@ -90,7 +90,7 @@ def load_pretrained_weights(model, config):
         custom_block.att.W_value.bias.data = qkv_bias[2*d:].clone()
         
         # 输出投影
-        custom_block.att.out_proj.weight.data = hf_block.attn.c_proj.weight.data.clone()
+        custom_block.att.out_proj.weight.data = hf_block.attn.c_proj.weight.data.clone().t()
         custom_block.att.out_proj.bias.data = hf_block.attn.c_proj.bias.data.clone()
         
         # 加载 LayerNorm
@@ -385,11 +385,6 @@ plt.title("Training and Validation Loss")
 plt.show()
 
 #测试生成
-def format_input(entry):
-    instruction_text = f"Below is an instruction that describes a task. Write a response that appropriately completes the request.\n\n### Instruction:\n{entry['instruction']}"
-    input_text = f"\n\n### Input:\n{entry['input']}" if entry["input"] else ""
-    return instruction_text + input_text
-
 def generate_response(model, tokenizer, instruction, input_text="",
                       max_new_tokens=128, temperature=0.7, top_p=0.9):
     model.eval()

@@ -228,7 +228,7 @@ class TransformerBlock(nn.Module):
         x = self.att(x)
         x = self.drop_shortcut(x)
         x = x + shortcut
-#前馈网络残差
+        #前馈网络残差
         shortcut = x
         x = self.norm2(x)
         x = self.ff(x)

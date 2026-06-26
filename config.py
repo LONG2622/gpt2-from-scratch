@@ -2,7 +2,7 @@
 from dataclasses import dataclass
 @dataclass
 class ModelConfig:
-    vocab_size: int = 5057
+    vocab_size: int = 50257
     context_length: int = 1024
     emb_dim : int  = 768
     n_heads: int = 12
@@ -11,7 +11,7 @@ class ModelConfig:
     qkv_bias = False
 
 @dataclass
-class TraningConfig:
+class TrainingConfig:
     batch_size : int = 8
     lr: float = 3e-4
     num_epochs :int = 10
