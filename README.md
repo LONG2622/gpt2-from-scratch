@@ -58,7 +58,8 @@ E --> F["🔍 Retrieval-Augmented Generation<br/>SentenceTransformer · FAISS"]
 
 F --> G["🌐 Gradio Web Demo"]
 ```
-
+<img src="assets/web_demo.png" width="95%">
+</p>
 ***
 
 # 📌 Project Overview
@@ -487,7 +488,9 @@ Compared with many educational implementations, this project extends GPT-2 beyon
 | RAG | ✅ |
 | FAISS Retrieval | ✅ |
 | Web Demo | ✅ |
+> 📸 Web Demo Screenshot
 
+![Web Demo](assets/web_demo.png)
 ---
 
 # 📊 Results
