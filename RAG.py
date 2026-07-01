@@ -272,13 +272,14 @@ def create_rag_system(
         tokenizer,
         device,
         knowledge_dir:str = "./knowledge",
-        rebuild_index: bool = False
+        rebuild_index: bool = False,
+        embedding_model: str = "all-MiniLM-L6-v2"
 ) -> RAGPipeline:
     """
     创建RAG系统
     """
     chunker = DocumentChunker(chunk_size=512, chunk_overlap=64)
-    encoder = TextEmbeddingEncoder(model_name="all-MiniLM-L6-v2")
+    encoder = TextEmbeddingEncoder(model_name=embedding_model)
     vector_store = VectorStore(encoder, use_faiss=True)
     # 检查是否需要重新构建索引
     index_path = os.path.join(knowledge_dir, "vector_store")

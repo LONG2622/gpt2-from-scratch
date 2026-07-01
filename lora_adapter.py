@@ -1,4 +1,4 @@
-lora -> lora_adapter.py
+#lora -> lora_adapter.py
 # c:\Users\田建隆\Desktop\github-repository\build-a-LLM-from-scratch\lora.py
 import torch
 import torch.nn as nn
