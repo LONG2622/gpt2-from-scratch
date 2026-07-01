@@ -1,4 +1,4 @@
-from ch01 import *
+from data_preprocessing import *
 #编码注意力机制（encoding attention mechanisim）
 import os
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"

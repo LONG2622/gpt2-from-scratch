@@ -15,7 +15,7 @@ from functools import partial
 import matplotlib.pyplot as plt
 
 #先导入LoRA模块
-from lora import LoRAGPTModel
+from lora_adapter import LoRAGPTModel
 
 # ========== 新增：预训练权重加载函数 ==========
 def load_pretrained_weights(model, config):

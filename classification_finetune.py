@@ -1,3 +1,4 @@
+ch05 -> classification_finetune.py
 #开始微调6.3
 #指令微调和分类微调
 #准备数据集：下载和解压
@@ -178,7 +179,7 @@ model_configs = {
 BASE_CONFIG.update(model_configs[CHOOSE_MODEL])
 #加载预训练的GPT模型
 from gpt_download import download_and_load_gpt2
-from ch04 import GPTModel
+from pretrain_trainer import GPTModel
 
 model_size = CHOOSE_MODEL.split(" ")[-1].lstrip("(").rstrip(")")
 settings, params = download_and_load_gpt2(
@@ -187,8 +188,8 @@ settings, params = download_and_load_gpt2(
 model = GPTModel(BASE_CONFIG)
 model.eval()
 
-from ch04 import text_to_token_ids, token_ids_to_text
-from ch03 import generate_text_simple
+from pretrain_trainer import text_to_token_ids, token_ids_to_text
+from gpt_model import generate_text_simple
 
 text_1  = "Every effort moves you"
 token_ids = generate_text_simple(

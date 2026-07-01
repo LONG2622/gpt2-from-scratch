@@ -1,3 +1,4 @@
+#ch04 -> pretrain_trainer.py
 # 在无标签数据上进行预训练
 import os
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
@@ -19,8 +20,8 @@ from src.training import (
 )
 
 # 导入模型相关模块
-from ch03 import GPTModel
-from ch01 import create_dataloader_v1
+from gpt_model import GPTModel
+from data_preprocessing import create_dataloader_v1
 
 # 使用统一配置
 GPT_CONFIG_124M = MODEL_CONFIGS["gpt2-small"]

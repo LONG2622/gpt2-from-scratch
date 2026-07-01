@@ -1,3 +1,4 @@
+#ch06 -> instruction_finetune.py
 # 通过微调遵循人类指令 6.5
 # 先为有监督微调准备数据集
 import os
@@ -26,7 +27,7 @@ from src.training import (
 
 # 导入模型相关模块
 from gpt_download import download_and_load_gpt2
-from ch03 import GPTModel
+from gpt_model import GPTModel
 
 # 打印依赖版本
 from importlib.metadata import version

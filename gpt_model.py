@@ -1,3 +1,4 @@
+ch03 -> gpt_model.py
 #implementing a GPTmodel from scratch to  generate text 
 #训练模型进行文本生成5.31
 #分词器
@@ -7,8 +8,8 @@ import torch
 import torch.nn as nn
 import tiktoken
 import math
-from ch02 import *
-from ch01 import *
+from attention import *
+from data_preprocessing import *
 #GPT模型配置
 GPT_CONFIG_124M = {
     "vocab_size": 50257,
@@ -206,7 +207,7 @@ model_with_shortcut = ExampleDeepNeuralNetwork(
 print_gradients(model_with_shortcut , sample_input)
 #transform block(实现其中的注意力层和线性层)
 #GPT 的transformer 块组件
-from ch02 import MultiHeadAttention
+from attention import MultiHeadAttention
 class TransformerBlock(nn.Module):
     def __init__ (self,cfg):
         super().__init__()

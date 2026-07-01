@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 
 # 使用独立的配置文件
 from config_clean import GPT_CONFIG_124M
-from lora import LoRAGPTModel
+from lora_adapter import LoRAGPTModel
 # 在 lr.py 中添加以下代码
 import tiktoken
 from torch.utils.data import Dataset, DataLoader

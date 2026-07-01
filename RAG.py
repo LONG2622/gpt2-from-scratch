@@ -349,7 +349,7 @@ if __name__ == "__main__":
     
     # 2. 加载配置和模型
     from config_clean import GPT_CONFIG_124M
-    from lora import LoRAGPTModel
+    from lora_adapter import LoRAGPTModel
     
     cfg = GPT_CONFIG_124M.copy()
     cfg["context_length"] = 512

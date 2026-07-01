@@ -1,3 +1,4 @@
+#ch02 -> attention.py
 # ch02.py —— 纯注意力机制模块，无任何测试代码
 import os
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"

@@ -1,3 +1,4 @@
+lora -> lora_adapter.py
 # c:\Users\田建隆\Desktop\github-repository\build-a-LLM-from-scratch\lora.py
 import torch
 import torch.nn as nn
@@ -292,7 +293,7 @@ def convert_to_lora(model: nn.Module, lora_rank: int = 8, lora_alpha: float = No
     """将普通 GPT 模型转换为支持 LoRA 的模型"""
     # 需要导入原始的 MultiHeadAttention
     try:
-        from ch02 import MultiHeadAttention
+        from attention import MultiHeadAttention
     except ImportError:
         print("警告：无法导入 MultiHeadAttention，转换功能不可用")
         return model

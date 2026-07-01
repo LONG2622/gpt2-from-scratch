@@ -26,7 +26,7 @@ from typing import Tuple, List
 # 导入RAG模块
 from RAG import create_rag_system
 from config_clean import GPT_CONFIG_124M
-from lora import LoRAGPTModel
+from lora_adapter import LoRAGPTModel
 
 # 全局变量
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
