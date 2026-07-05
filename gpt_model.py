@@ -1,4 +1,4 @@
-ch03 -> gpt_model.py
+#ch03 -> gpt_model.py
 #implementing a GPTmodel from scratch to  generate text 
 #训练模型进行文本生成5.31
 #分词器
