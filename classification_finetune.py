@@ -1,4 +1,4 @@
-ch05 -> classification_finetune.py
+#ch05 -> classification_finetune.py
 #开始微调6.3
 #指令微调和分类微调
 #准备数据集：下载和解压
